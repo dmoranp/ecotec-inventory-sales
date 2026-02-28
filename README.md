@@ -16,7 +16,7 @@ Sistema web para gestión de productos y registro de ventas desarrollado en PHP 
 - Servidor web con soporte PHP (XAMPP, WAMP, LAMP)
 - Navegador web moderno
 
-## Instalación
+## Instalación Tradicional
 
 1. Clonar el repositorio:
 ```bash
@@ -47,6 +47,45 @@ $db = "inventario";
 ```
 http://localhost/inventario-ventas/public/
 ```
+
+## Instalación con Docker
+
+1. Clonar el repositorio:
+```bash
+git clone https://github.com/dmoranp/ecotec-inventory-sales.git
+cd ecotec-inventory-sales
+```
+
+2. Copiar el archivo de configuración y modificar las variables:
+```bash
+cp .env.example .env
+```
+
+3. Editar `.env` con tus credenciales:
+```env
+DB_HOST=db
+DB_USER=root
+DB_PASS=tu_password_seguro
+DB_NAME=inventario
+
+MYSQL_ROOT_PASSWORD=tu_password_seguro
+MYSQL_DATABASE=inventario
+```
+
+4. Crear las redes externas (si no existen):
+```bash
+docker network create proxy_network
+docker network create inventario_network
+```
+
+5. Levantar los contenedores:
+```bash
+docker compose up -d --build
+```
+
+6. La base de datos se inicializa automáticamente con el script SQL.
+
+7. Configurar el proxy reverso para apuntar al contenedor `ecotec_inventario_web` en el puerto 80.
 
 ## Estructura del Proyecto
 
@@ -125,3 +164,9 @@ El script `database/inventario.sql` crea:
 - **Precio**: Mayor a 0
 - **Stock**: Mayor o igual a 0, no permite negativos
 - **Ventas**: Valida stock disponible antes de registrar
+
+---
+
+## Nota del Estudiante
+
+La implementación con Docker fue agregada como un **plus adicional** para facilitar el despliegue del proyecto en diferentes entornos, permitiendo una configuración rápida y reproducible sin necesidad de instalar dependencias manualmente.
