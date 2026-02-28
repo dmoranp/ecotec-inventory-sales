@@ -1,0 +1,45 @@
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    container_name: ecotec_inventario_web
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASS=root
+      - DB_NAME=inventario
+    networks:
+      - proxy_network
+      - inventario_network
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    container_name: ecotec_inventario_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: inventario
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/inventario.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - inventario_network
+
+volumes:
+  db_data:
+
+networks:
+  proxy_network:
+    external: true
+  inventario_network:
+    external: true
