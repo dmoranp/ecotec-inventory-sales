@@ -111,13 +111,13 @@ El script `database/inventario.sql` crea:
 ## Capturas
 
 ### Página Principal
-![Página Principal](docs/capturas/index.png)
+![Página Principal](screenshots/index.png)
 
 ### Gestión de Productos
-![Productos](docs/capturas/productos.png)
+![Productos](screenshots/productos.png)
 
 ### Registro de Ventas
-![Ventas](docs/capturas/ventas.png)
+![Ventas](screenshots/ventas.png)
 
 ## Validaciones
 
