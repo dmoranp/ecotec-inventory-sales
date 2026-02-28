@@ -30,7 +30,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Ventas</h5>
                             <p class="card-text">Registro de ventas</p>
-                            <a href="ventas.php" class="btn btn-secondary disabled">Próximamente</a>
+                            <a href="ventas.php" class="btn btn-success">Ir a Ventas</a>
                         </div>
                     </div>
                 </div>
