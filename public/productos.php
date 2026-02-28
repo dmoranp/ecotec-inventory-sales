@@ -62,6 +62,10 @@ $productos = $controller->index();
 </head>
 <body class="bg-light">
 <div class="container mt-5">
+    <div class="mb-3">
+        <a href="index.php" class="btn btn-outline-primary">← Volver al Inicio</a>
+    </div>
+
     <div class="card shadow-lg">
         <div class="card-header bg-primary text-white">
             <h4 class="mb-0"><?= $productoEditar ? 'Editar Producto' : 'Nuevo Producto' ?></h4>
